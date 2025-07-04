@@ -23,7 +23,7 @@ const Navbar = () => {
   return (
     <nav className="bg-gradient-to-r from-slate-900 via-blue-900 to-slate-900 text-white shadow-2xl sticky top-0 z-50 backdrop-blur-sm border-b border-slate-700/50">
       <div className="max-w-7xl mx-auto px-4 lg:px-6">
-        <div className="flex justify-between items-center py-7">
+        <div className="flex justify-between items-center py-6">
           {/* Logo/Brand */}
           <Link to="/" className="flex items-center space-x-3 group">
             <div className="relative">
