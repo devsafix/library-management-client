@@ -18,14 +18,14 @@ const BookTable = ({ books, onDelete }: Props) => {
   }
 
   return (
-    <div className="relative overflow-hidden bg-white rounded-2xl shadow-xl border border-gray-100">
+    <div className="relative overflow-hidden bg-white rounded-2xl shadow-xl border border-gray-100 mb-10">
       {/* Decorative top border */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-indigo-500 via-blue-500 to-purple-500"></div>
 
       {/* Background decoration */}
       <div className="absolute top-0 right-0 w-64 h-64 bg-gradient-to-br from-indigo-50/20 to-blue-50/20 rounded-full blur-3xl transform translate-x-32 -translate-y-32"></div>
 
-      <div className="relative overflow-x-auto">
+      <div className="relative overflow-x-auto overflow-y-auto h-[800px]">
         <table className="min-w-full table-auto">
           <thead className="bg-gradient-to-r from-slate-50 to-gray-50 border-b border-gray-200">
             <tr>

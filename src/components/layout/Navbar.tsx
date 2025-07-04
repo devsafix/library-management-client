@@ -42,39 +42,41 @@ const Navbar = () => {
             </div>
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-4">
-            {navItems.map((item) => {
-              const IconComponent = item.icon;
-              return (
-                <NavLink
-                  key={item.name}
-                  to={item.path}
-                  className={({ isActive }) =>
-                    `group relative flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-in-out
+          <div className="flex items-center gap-4">
+            {/* Desktop Navigation */}
+            <div className="hidden md:flex items-center">
+              {navItems.map((item) => {
+                const IconComponent = item.icon;
+                return (
+                  <NavLink
+                    key={item.name}
+                    to={item.path}
+                    className={({ isActive }) =>
+                      `group relative flex items-center space-x-2 px-4 py-2 rounded-lg font-medium transition-all duration-300 ease-in-out
                     ${
                       isActive
                         ? "text-white"
                         : "text-slate-300 hover:text-white"
                     }`
-                  }
-                >
-                  <IconComponent className="w-4 h-4" />
-                  <span className="font-semibold">{item.name}</span>
-                  <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-300 group-hover:w-full"></div>
-                </NavLink>
-              );
-            })}
-          </div>
+                    }
+                  >
+                    <IconComponent className="w-4 h-4" />
+                    <span className="font-semibold">{item.name}</span>
+                    <div className="absolute bottom-0 left-0 w-0 h-0.5 bg-gradient-to-r from-amber-400 to-orange-500 rounded-full transition-all duration-300 group-hover:w-full"></div>
+                  </NavLink>
+                );
+              })}
+            </div>
 
-          {/* Search and User Section (Desktop) */}
-          <div className="hidden md:flex items-center space-x-4">
-            <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-all duration-200">
-              <Search className="w-5 h-5" />
-            </button>
-            <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-all duration-200">
-              <User className="w-5 h-5" />
-            </button>
+            {/* Search and User Section (Desktop) */}
+            <div className="hidden md:flex items-center space-x-4">
+              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-all duration-200">
+                <Search className="w-5 h-5" />
+              </button>
+              <button className="p-2 text-slate-400 hover:text-white hover:bg-slate-800/50 rounded-lg transition-all duration-200">
+                <User className="w-5 h-5" />
+              </button>
+            </div>
           </div>
 
           {/* Mobile Menu Button */}
