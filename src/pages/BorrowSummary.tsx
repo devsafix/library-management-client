@@ -4,7 +4,9 @@ import { useGetBorrowSummaryQuery } from "../redux/api/borrow.api";
 import type { ReactNode, Key } from "react";
 
 const BorrowSummary = () => {
-  const { data, isLoading } = useGetBorrowSummaryQuery(undefined);
+  const { data, isLoading } = useGetBorrowSummaryQuery(undefined, {
+    refetchOnMountOrArgChange: true,
+  });
 
   if (isLoading)
     return (
