@@ -17,7 +17,9 @@ import { Link } from "react-router-dom";
 
 const BookDetails = () => {
   const { id } = useParams();
-  const { data, isLoading } = useGetBookByIdQuery(id!);
+  const { data, isLoading } = useGetBookByIdQuery(id!, {
+    refetchOnMountOrArgChange: true,
+  });
   const book = data?.data;
 
   if (isLoading)
