@@ -1,69 +1,118 @@
-# React + TypeScript + Vite
+# 📚 Library Management System (Client)
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A minimal library management frontend built with **React**, **TypeScript**, **Redux Toolkit Query**, and **Tailwind CSS**. This system allows users to manage books, borrow them, and view borrowing summaries — all with a clean and responsive user interface.
 
-Currently, two official plugins are available:
+---
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## 🚀 Features
 
-## Expanding the ESLint configuration
+- 🔍 View all books in a sortable, filterable table.
+- ➕ Add new books with validation.
+- ✏️ Edit book details and automatically update availability.
+- ❌ Delete books with confirmation.
+- 📖 Borrow books with quantity control and due date.
+- 📊 View borrow summary (aggregated view of total borrowed copies).
+- ✅ Optimistic UI updates and toast notifications.
+- 📱 Fully responsive design for mobile, tablet, and desktop.
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+---
 
-```js
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## 🧰 Tech Stack
 
-      // Remove tseslint.configs.recommended and replace with this
-      ...tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      ...tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      ...tseslint.configs.stylisticTypeChecked,
+| Layer             | Technology                      |
+|------------------|----------------------------------|
+| Frontend         | React + Vite + TypeScript        |
+| State Management | Redux Toolkit + RTK Query        |
+| Styling          | Tailwind CSS + ShadCN UI         |
+| Routing          | React Router DOM (Data mode)     |
+| Notifications    | React Hot Toast                  |
+| API              | REST API (connected to Express)  |
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🗂️ Folder Structure
+
 ```
 
-You can also install [eslint-plugin-react-x](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://github.com/Rel1cx/eslint-react/tree/main/packages/plugins/eslint-plugin-react-dom) for React-specific lint rules:
+src/
+├── components/         # Reusable UI components (layout, dialog, tables)
+├── modules/            # Feature-specific UI pieces
+├── pages/              # Page-level components (Books, CreateBook, etc.)
+├── redux/
+│   ├── api/            # RTK Query API services
+│   ├── hooks.ts        # Custom typed hooks
+│   └── store.ts        # Redux store config
+├── routes/             # React Router layout & route config
+├── types/              # TypeScript interfaces/types
+├── lib/                # Utility/helper functions
+├── App.tsx
+├── main.tsx
+└── index.css
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+````
 
-export default tseslint.config([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+---
+
+## 🔧 Getting Started
+
+### 1️⃣ Prerequisites
+
+- [Node.js](https://nodejs.org/) (v16+)
+- Backend API (running on `http://localhost:5000/api/`)
+- `npm` or `pnpm`
+
+---
+
+### 2️⃣ Installation
+
+```bash
+# Clone the project
+git clone https://github.com/devsafix/library-management-client.git
+cd library-client
+
+# Install dependencies
+npm install
+# or
+pnpm install
+````
+
+---
+
+### 3️⃣ Start the Development Server
+
+```bash
+npm run dev
+# or
+pnpm dev
 ```
+
+The app will run at: [http://localhost:5173](http://localhost:5173)
+
+---
+
+## ✅ Bonus Features Implemented
+
+* [x] Optimistic UI updates
+* [x] Toast notifications
+* [x] Responsive layout
+* [x] Type-safe forms
+* [x] RTK Query for all API interactions
+
+---
+
+## 🙌 Acknowledgements
+
+* [Redux Toolkit Docs](https://redux-toolkit.js.org/)
+* [RTK Query](https://redux-toolkit.js.org/rtk-query/overview)
+* [ShadCN UI](https://ui.shadcn.com/)
+* [Tailwind CSS](https://tailwindcss.com/)
+
+---
+
+## 📬 Contact
+
+For any questions or issues:
+
+## Author
+
+**Kawser Ferdous Safi** – [devsafix.vercel.app](https://devsafix.vercel.app)
