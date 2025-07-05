@@ -1,7 +1,7 @@
 import { useGetBooksQuery } from "@/redux/api/book.api";
 import type { IBook } from "@/types/book.types";
 import { Link } from "react-router-dom";
-import { ArrowRight, BookOpen, Clock, Star, Sparkles } from "lucide-react";
+import { ArrowRight, BookOpen, Star, Sparkles } from "lucide-react";
 
 export default function RecentPublishBooks() {
   const { data, isLoading, error } = useGetBooksQuery({
@@ -67,21 +67,20 @@ export default function RecentPublishBooks() {
       {books.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8">
           {books.map((book: IBook, index: number) => (
-            <Link
-              to={`/books/${book._id}`}
+            <div
               key={book._id}
-              className="block group"
+              className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:scale-105 border border-gray-100 group"
             >
-              <div className="relative bg-white rounded-2xl shadow-lg hover:shadow-2xl transition-all duration-500 overflow-hidden transform hover:scale-105 border border-gray-100">
-                {/* New Badge */}
-                {index === 0 && (
-                  <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
-                    <Star className="w-3 h-3 inline mr-1" />
-                    New
-                  </div>
-                )}
+              {/* New Badge */}
+              {index === 0 && (
+                <div className="absolute top-3 left-3 z-10 bg-gradient-to-r from-amber-500 to-orange-600 text-white px-3 py-1 rounded-full text-xs font-bold shadow-lg">
+                  <Star className="w-3 h-3 inline mr-1" />
+                  New
+                </div>
+              )}
 
-                {/* Book Cover */}
+              {/* Book Cover - Clickable */}
+              <Link to={`/books/${book._id}`} className="block">
                 <div className="relative overflow-hidden">
                   <img
                     src={
@@ -103,29 +102,21 @@ export default function RecentPublishBooks() {
                     ></div>
                   </div>
                 </div>
+              </Link>
 
-                {/* Book Info */}
-                <div className="p-6 space-y-4">
-                  <div className="space-y-2">
+              {/* Book Info */}
+              <div className="p-6 space-y-4">
+                <div className="space-y-2">
+                  <Link to={`/books/${book._id}`}>
                     <h3 className="text-xl font-bold text-gray-900 line-clamp-1 group-hover:text-amber-600 transition-colors duration-300">
                       {book.title}
                     </h3>
-                    <p className="text-gray-600 font-medium">
-                      by {book.author}
-                    </p>
-                    <div className="flex items-center gap-2">
-                      <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
-                        {book.genre}
-                      </span>
-                      <Clock className="w-3 h-3 text-gray-400" />
-                      <span className="text-xs text-gray-500">
-                        Recently Added
-                      </span>
-                    </div>
-                  </div>
-
-                  {/* Status Badge */}
-                  <div className="flex items-center justify-between">
+                  </Link>
+                  <p className="text-gray-600 font-medium">by {book.author}</p>
+                  <div className="flex items-center justify-between gap-2">
+                    <span className="px-2 py-1 bg-gray-100 text-gray-700 rounded-lg text-xs font-medium">
+                      {book.genre}
+                    </span>
                     <span
                       className={`inline-flex items-center px-3 py-1 rounded-full text-xs font-semibold ${
                         book.available
@@ -140,16 +131,30 @@ export default function RecentPublishBooks() {
                       ></div>
                       {book.available ? "Available" : "Out of Stock"}
                     </span>
-
-                    {/* Hover arrow */}
-                    <ArrowRight className="w-4 h-4 text-gray-400 transform translate-x-0 group-hover:translate-x-1 transition-transform duration-300 opacity-0 group-hover:opacity-100" />
                   </div>
                 </div>
 
-                {/* Hover glow effect */}
-                <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+                {/* Borrow Button */}
+                <div className="pt-2">
+                  <Link to={`/borrow/${book._id}`}>
+                    <button
+                      className={`w-full inline-flex items-center justify-center px-4 py-2 rounded-lg font-semibold text-sm transition-all duration-300 ${
+                        book.available
+                          ? "text-white bg-gradient-to-r from-amber-500 to-orange-600  hover:from-amber-600 hover:to-orange-700 cursor-pointer transform hover:scale-103"
+                          : "bg-gray-300 text-gray-500 cursor-not-allowed"
+                      }`}
+                      disabled={!book.available}
+                    >
+                      <BookOpen className="w-4 h-4 mr-2" />
+                      {book.available ? "Borrow Now" : "Unavailable"}
+                    </button>
+                  </Link>
+                </div>
               </div>
-            </Link>
+
+              {/* Hover glow effect */}
+              <div className="absolute inset-0 rounded-2xl bg-gradient-to-r from-amber-500/10 to-orange-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-300 pointer-events-none"></div>
+            </div>
           ))}
         </div>
       ) : (
